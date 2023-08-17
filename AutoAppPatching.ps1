@@ -136,7 +136,11 @@ Function Confirm-ENV_Vars{
         [String]$VarString
     )
     $envVarExists = $false
+<<<<<<< HEAD
     $envVarList = $VarString.Split(";")
+=======
+    $envVarList = $varsString.Split(";")
+>>>>>>> cd5bf3e8a98974f8390cbe57ed99c7387a3eeb48
     for($i=0;$i -lt $envVarList.Count;$i++){
         if($envVarList[$i] -like "DesktopAppInstaller"){
             $envVarExists = $true
@@ -168,6 +172,7 @@ Function Set-ENV_Vars {
     }
 }
 
+<<<<<<< HEAD
 Function Convert-WingetResponse{
     param(
         [Array]$Res
@@ -237,6 +242,8 @@ Function Update-Apps{
     }
 }
 
+=======
+>>>>>>> cd5bf3e8a98974f8390cbe57ed99c7387a3eeb48
 Function Read-UpdateList{
     param(
         [String]$UpListFile
@@ -256,15 +263,24 @@ Function Read-UpdateList{
 $winget = Confirm-Winget -Url $Winget_URL -Folder $Curr_Dir -Log $Log
 if($winget){
     Set-ENV_Vars
+<<<<<<< HEAD
     #winget list --accept-source-agreements --disable-interactivity
     $app_list = Read-UpdateList -UpListFile $Update_List
+=======
+    winget list --accept-source-agreements --disable-interactivity
+    <#$app_list = Read-UpdateList -UpListFile $Update_List
+>>>>>>> cd5bf3e8a98974f8390cbe57ed99c7387a3eeb48
     if(($app_list.Count -eq 0) -xor ($app_list -eq 0)){
         $time = Get-Date
         Write-Warning "Exiting due to failed app list fetch. $time"
         "Exiting due to failed app list fetch. $time" | Out-File -Append -FilePath $Log
         #Exit 1
+<<<<<<< HEAD
     }
     Update-Apps -CVE_AppList $app_list
+=======
+    }#>
+>>>>>>> cd5bf3e8a98974f8390cbe57ed99c7387a3eeb48
 
 }else{
     $time = Get-Date
